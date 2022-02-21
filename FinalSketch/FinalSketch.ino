@@ -49,7 +49,7 @@ int scan() {
 }
 
 int getPos1() {
-  int pos = random(0, 180);
+  int pos = random(0, 170);
   serv1.write(pos);
   return pos;
 }
