@@ -3,11 +3,11 @@
 Servo serv1;
 Servo serv2;
 Servo serv3;
-int value = 20;
-int values[10];
-int pos1[10];
-int pos2[10];
-int pos3[10];
+const int value = 20;
+int values[value];
+int pos1[value];
+int pos2[value];
+int pos3[value];
 
 void setup() {
   Serial.begin(9600);
@@ -48,6 +48,7 @@ void loop() {
   Serial.println(pos2[maks]);
   Serial.print("Servo3 position er: ");
   Serial.println(pos3[maks]);
+  Serial.println();
   delay(10000);
 
 }
