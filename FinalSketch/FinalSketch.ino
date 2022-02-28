@@ -3,9 +3,11 @@
 Servo serv1;
 Servo serv2;
 Servo serv3;
+int value = 20;
 int values[10];
 int pos1[10];
 int pos2[10];
+int pos3[10];
 
 void setup() {
   Serial.begin(9600);
@@ -14,12 +16,14 @@ void setup() {
   serv3.attach(2);
   serv1.write(90);
   serv2.write(90);
+  serv3.write(90);
 }
 
 void loop() {
   for (int i = 0; i < 10; i++) {
     pos1[i] = getPos1();
     pos2[i] = getPos2();
+    pos3[i] = getPos3();
     values[i] = scan();
     Serial.print("Værdi af LCR er: ");
     Serial.println(values[i]);
@@ -27,18 +31,23 @@ void loop() {
     Serial.println(pos1[i]);
     Serial.print("Værdi af servo 2 er: ");
     Serial.println(pos2[i]);
+    Serial.print("Værdi af servo 3 er: ");
+    Serial.println(pos3[i]);
     Serial.println();
     delay(3000);
   }
   int maks = findMax(values);
   serv1.write(pos1[maks]);
   serv2.write(pos2[maks]);
+  serv3.write(pos3[maks]);
   Serial.print("største værdi index er: ");
   Serial.println(maks);
   Serial.print("Servo1 position er: ");
   Serial.println(pos1[maks]);
   Serial.print("Servo2 position er: ");
   Serial.println(pos2[maks]);
+  Serial.print("Servo3 position er: ");
+  Serial.println(pos3[maks]);
   delay(10000);
 
 }
@@ -57,6 +66,12 @@ int getPos1() {
 int getPos2() {
   int pos = random(0, 180);
   serv2.write(pos);
+  return pos;
+}
+
+int getPos3() {
+  int pos = random(0, 180);
+  serv3.write(pos);
   return pos;
 }
 
